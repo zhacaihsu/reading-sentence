@@ -1,34 +1,16 @@
-# 認字拼句練習 PWA｜第三版（題庫版）
+# 認字拼字 PWA：中文拼句 + 英文拼字
 
-## 功能
-- 內建四道不含個資的範例題目。
-- 點選題庫句子即可切換出題；點字會朗讀並按點選順序填入空格。
-- 自訂題目加入題庫、編輯、刪除、選題。
-- 匯出 JSON 備份與匯入 JSON 合併題庫，重複題目自動略過。
-- 朗讀速度 0.5～1.5 倍。
-- 自訂題庫和語音速度使用 localStorage 保存在使用者自己的瀏覽器，不會上傳至 GitHub，也不會公開給其他使用者。
-- 自動嘗試將第二版儲存的自訂句子加入題庫。
-- PWA 離線網頁快取。語音離線使用依裝置語音服務而定。
+將 ZIP 解壓縮，並把 `index.html`、`sw.js`、`manifest.webmanifest`、`icons/` 資料夾及 `.nojekyll` 上傳至 GitHub Repository 根目錄。GitHub → Settings → Pages → Deploy from a branch → main → /(root)。提交並等待 Pages 部署成功。
 
-## 部署到 GitHub Pages
-1. 將此 ZIP 解壓縮。
-2. 上傳解壓縮後的 `index.html`、`sw.js`、`manifest.webmanifest`、`.nojekyll`、`icons/` 到 GitHub Repository **根目錄**，和舊檔同名時選擇覆蓋並 Commit changes。
-3. 在 Settings → Pages 選 Deploy from a branch，Branch=`main`、Folder=`/(root)`。
-4. Pages 成功部署後，重新開啟 GitHub Pages 網址。如果仍看到舊版，關閉 PWA 再開啟或重新整理。
+## 英文練習
 
-## 題庫備份格式
+- 預設範例：cat、dog、sun、hat、pen、cup、bus、bed、pig、fish、book、apple。
+- 題目在上方，下面有逐字母的格子。點字母念出英文字母名稱，按照點選順序填格；可取消、清空、重排。整個單字按「朗讀拼好的單字」。
+- 預設只顯示單字需要的打亂字母；可切換完整 A–Z 26 個字母，支援重複字母（book、apple）。
+- 英文單字須為 2–15 個英文字母，可新增、編輯、刪除、選題、匯出/匯入 JSON。
+- 中文題庫保留第三版資料鍵值及 JSON 相容性；英文使用獨立題庫，不會覆蓋中文。
+- 語速可調 0.5–1.5 倍。英文語音由瀏覽器/裝置的英語語音引擎負責，單字朗讀效果取決於語音引擎；字母名稱與拼讀自然音不同。
 
-```json
-{
-  "format": "reading-sentence-question-bank",
-  "version": 1,
-  "exportedAt": "2026-11-19T00:00:00.000Z",
-  "sentences": ["我要喝水", "我想看書"]
-}
-```
+## 隱私與備份
 
-匯入只接受以上格式，與 1～20 字的句子。匯入採合併，重複跳過，不清除現有題庫。
-
-## 注意
-- GitHub Pages 託管的程式檔案是公開的，但每個使用者自己的題庫只在各自瀏覽器內。任何清除網站資料、使用無痕模式、換裝置的操作，都可能使題庫不見，請定期匯出備份。
-- 內建範例不可修改，自己的題目可自行編輯刪除。
+自訂題目保存在瀏覽器 localStorage。不同手機不會自動同步；需使用 JSON 匯出、匯入。請避免用無痕模式保存重要題庫。離線瀏覽依 PWA service worker 快取，離線語音是否可用取決於手機是否有離線語音包。
